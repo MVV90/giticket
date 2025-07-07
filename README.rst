@@ -2,21 +2,6 @@
 giticket
 ========
 
-.. image:: https://api.star-history.com/svg?repos=milin/giticket&type=Date)](https://star-history.com/#milin/giticket&Date
-
-.. image:: https://img.shields.io/pypi/v/giticket.svg
-        :target: https://pypi.python.org/pypi/giticket
-
-.. image:: https://travis-ci.com/milin/giticket.svg?branch=master
-        :target: https://travis-ci.org/milin/giticket
-
-.. image:: https://readthedocs.org/projects/giticket/badge/?version=latest
-        :target: https://giticket.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-
-
-
 Auto add ticket info to your git commits.
 
 
@@ -43,16 +28,18 @@ By default it's ``'{ticket} {commit_msg}``, where ``ticket`` is replaced with th
 Pass ``--mode=`` or update ``args: [--mode=regex_match]`` in your .yaml file to extract ticket by the regex rather than relying on branch name convention.
 With this mode you can also make use of ``{tickets}`` placeholder in ``format`` argument value to put multiple comma-separated tickets in the commit message in case your branch contains more than one ticket.
 
+Pass ``divider`` and ``divider_offset`` to expand shorted tickets `PROJECT123` to `PROJECT-123`. See for more details: https://github.com/MVV90/giticket/pull/1
+
 It is best used along with pre-commit_. You can use it along with pre-commit by adding the following hook in your ``.pre-commit-config.yaml`` file.
 
 ::
 
     repos:
-    - repo:  https://github.com/milin/giticket
+    - repo:  https://github.com/MVV90/giticket
       rev: v1.3
       hooks:
       - id:  giticket
-        args: ['--regex=PROJ-[0-9]', '--format={ticket} {commit_msg}']  # Optional
+        args: ['--regex=PROJ-[0-9]', '--format={ticket} {commit_msg}', '--divider=-']  # Optional
 
 
 You need to have precommit setup to use this hook.
